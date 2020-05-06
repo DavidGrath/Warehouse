@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="android.view.View"/>
+
+        <variable name="registerForm" type="com.example.warehouse.bind.RegisterForm"/>
+    </data>
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+                                                           android:layout_height="wrap_content"
+        android:paddingBottom="16dp">
+        <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/textlayout_register_username"
+                android:hint="Username"
+                app:counterMaxLength="30" app:counterEnabled="true" app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="16dp" android:layout_marginEnd="16dp" android:layout_marginStart="16dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textedit_register_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@={registerForm.username}"
+                    android:maxLength="30"
+                    android:singleLine="true"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/textlayout_register_username"
+                android:id="@+id/textlayout_register_fname" app:counterEnabled="true" app:counterMaxLength="20"
+                app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginEnd="16dp" android:layout_marginStart="16dp" android:layout_marginTop="16dp"
+                android:hint="First Name">
+
+            <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textedit_register_fname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@={registerForm.FName}"
+                    android:maxLength="20"
+                    android:singleLine="true"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/textlayout_register_lname"
+                app:layout_constraintTop_toBottomOf="@id/textlayout_register_fname"
+                app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="16dp" android:layout_marginEnd="16dp" android:layout_marginStart="16dp"
+                app:counterEnabled="true" app:counterMaxLength="20" android:hint="Last Name">
+
+            <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textedit_register_lname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@={registerForm.LName}"
+                    android:singleLine="true"
+                    android:maxLength="20"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/textlayout_register_email"
+                app:layout_constraintTop_toBottomOf="@id/textlayout_register_lname"
+                app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="16dp" android:layout_marginTop="16dp" android:layout_marginEnd="16dp"
+                android:hint="E-Mail">
+
+            <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textedit_register_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@={registerForm.EMail}"
+                    android:inputType="textEmailAddress"
+                    android:singleLine="true"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/textlayout_register_email"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"
+                android:id="@+id/textlayout_register_password" app:passwordToggleEnabled="true"
+                app:counterEnabled="true"
+                app:counterMaxLength="40" android:hint="Password">
+
+            <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textedit_register_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@={registerForm.password}"
+                    android:singleLine="true"
+                    android:inputType="textPassword"
+                    android:maxLength="40"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/textlayout_register_password"
+                android:id="@+id/textlayout_register_confirm" android:hint="Confirm Password"
+                android:layout_marginTop="16dp" app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textedit_register_confirm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@={registerForm.username}"
+                    android:maxLength="40"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <Button
+                android:id="@+id/button_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/textlayout_register_confirm"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="16dp"
+                android:text="Register"
+                android:enabled="@{!registerForm.currentlyRegistering}"/>
+        <ProgressBar
+                android:id="@+id/progressbar_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/button_register"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/button_register"
+                app:layout_constraintStart_toEndOf="@+id/button_register"
+                android:visibility="@{registerForm.currentlyRegistering? View.VISIBLE : View.INVISIBLE}"
+                style="?android:attr/progressBarStyle"/>
+        <TextView
+                android:text="Already have an account? Log in"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/label_switchtologin" app:layout_constraintStart_toStartOf="@+id/button_register"
+                app:layout_constraintEnd_toEndOf="@+id/button_register" android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/button_register"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

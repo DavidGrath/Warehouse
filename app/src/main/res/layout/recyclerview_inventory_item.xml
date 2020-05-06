@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="200dp"
+>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp" android:background="@drawable/background_inventory_item"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="16dp" android:layout_marginEnd="16dp" app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="16dp" android:elevation="1dp" app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp" tools:srcCompat="@tools:sample/backgrounds/scenic"
+                android:id="@+id/imageview_inventory_item" app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/bottom_bar" app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="32dp" app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+                android:id="@+id/bottom_bar" android:background="@drawable/background_bottom_bar">
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" app:srcCompat="@drawable/ic_more_vert_black_24dp"
+                    android:id="@+id/button_inventory_item_popup" app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginEnd="8dp"/>
+            <TextView
+                    android:text="Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/label_item_name" android:textStyle="bold"
+                    android:textColor="#000" android:layout_marginStart="8dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+                    android:singleLine="true"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+                android:text="Price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/label_item_price" app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"/>
+        <TextView
+                android:text="Quantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/label_item_qty" android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/label_item_price" app:layout_constraintEnd_toEndOf="@+id/label_item_price"
+        />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

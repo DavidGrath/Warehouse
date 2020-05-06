@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="android.view.View"/>
+
+        <variable name="loginForm" type="com.example.warehouse.bind.LoginForm"/>
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="16dp" android:layout_marginStart="16dp"
+                    android:id="@+id/textlayout_login_username" app:counterMaxLength="30" app:counterEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Username" android:id="@+id/textedit_login_username" android:singleLine="true"
+                        android:text="@={loginForm.username}"
+                        android:maxLength="30"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/textlayout_login_username"
+                    android:layout_marginTop="16dp" app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp" android:id="@+id/textlayout_login_password"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="40" app:passwordToggleEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Password" android:inputType="textPassword"
+                        android:text="@={loginForm.password}"
+                        android:id="@+id/textedit_login_password" android:maxLength="40" android:singleLine="true"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <Button
+                    android:text="Login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/button_login"
+                    app:layout_constraintTop_toBottomOf="@id/textlayout_login_password" android:layout_marginTop="16dp"
+                    android:enabled="@{!loginForm.currentlyLoggingIn}"
+                    app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            />
+            <ProgressBar
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/progressbar_login" app:layout_constraintStart_toEndOf="@+id/button_login"
+                    android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintTop_toTopOf="@+id/button_login"
+                    app:layout_constraintBottom_toBottomOf="@+id/button_login"
+                    android:visibility="@{loginForm.currentlyLoggingIn? View.VISIBLE : View.INVISIBLE}"/>
+            <TextView
+                    android:text="New User? Register"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/label_switchtoregister" android:textSize="18sp"
+                    app:layout_constraintTop_toBottomOf="@id/button_login"
+                    app:layout_constraintEnd_toEndOf="@+id/button_login"
+                    app:layout_constraintStart_toStartOf="@+id/button_login" android:layout_marginTop="16dp"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
