@@ -10,6 +10,6 @@ data class Warehouse(
     val name : String,
     val address : String,
     val uuid : String,
-    val pictureUrl : String
+    val pictureUrl : String? = null
 ) {
 }

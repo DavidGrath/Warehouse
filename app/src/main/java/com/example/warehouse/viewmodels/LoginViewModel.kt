@@ -5,6 +5,8 @@ import androidx.lifecycle.AndroidViewModel
 import com.example.warehouse.bind.LoginForm
 import com.example.warehouse.bind.RegisterForm
 import com.example.warehouse.database.InventoryItemDatabase
+import com.example.warehouse.models.entities.InventoryItem
+import com.example.warehouse.models.entities.Warehouse
 import com.example.warehouse.models.network.requests.LoginRequest
 import com.example.warehouse.models.network.requests.RegisterRequest
 import com.example.warehouse.models.network.responses.RegisteredUser
@@ -17,18 +19,19 @@ import retrofit2.Retrofit
 import kotlin.random.Random
 
 class LoginViewModel(application: Application) : AndroidViewModel(application) {
+
     var loginForm : LoginForm = LoginForm("", "")
     var registerForm : RegisterForm = RegisterForm("", "",
         "", "", "", "")
     val database = InventoryItemDatabase.getDatabase(application)
     val inventoryItemDao = database.inventoryItemDao()
+    val warehouseDao = database.warehouseDao()
     val service = RetrofitInstance.warehouseService
-    private val warehouseRepository = WarehouseRepository(inventoryItemDao, service)
+    private val warehouseRepository = WarehouseRepository(inventoryItemDao, warehouseDao, service)
+
 
     suspend fun login() : Result<RegisteredUser?> {
         loginForm.currentlyLoggingIn = true
-        //simulate network call
-        delay(1_000L)
         val result = warehouseRepository.login(LoginRequest(loginForm.username, loginForm.password))
         loginForm.currentlyLoggingIn = false
         return result
@@ -43,8 +46,9 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
         return result
     }
 
-    suspend fun loadData() {
+    suspend fun loadData(username : String, token : String) {
+        warehouseRepository.username = username
+        warehouseRepository.token = token
         warehouseRepository.loadData()
-        delay(Random.nextLong(1_000L, 3_000L))
     }
 }

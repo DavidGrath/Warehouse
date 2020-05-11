@@ -37,12 +37,12 @@ class LoginActivity : AppCompatActivity() , LoginFragment.LoginFragmentCallback,
         }
     }
 
-    override fun onSuccessfulLogin() {
+    override fun onSuccessfulLogin(username : String, token : String) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.frame_main_login, successFragment)
             .commit()
         runBlocking {
-            viewModel.loadData()
+            viewModel.loadData(username, token)
             startActivity(Intent(this@LoginActivity, MainActivity::class.java))
             finish()
         }
@@ -54,12 +54,12 @@ class LoginActivity : AppCompatActivity() , LoginFragment.LoginFragmentCallback,
             .commit()
     }
 
-    override fun onSuccessfulRegister() {
+    override fun onSuccessfulRegister(username : String, token : String) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.frame_main_login, successFragment)
             .commit()
         runBlocking {
-            viewModel.loadData()
+            viewModel.loadData(username, token)
             startActivity(Intent(this@LoginActivity, MainActivity::class.java))
             finish()
         }

@@ -25,9 +25,11 @@ import kotlinx.coroutines.launch
 
 class RegisterFragment : Fragment() , View.OnClickListener {
 
+    val handler = Handler(Looper.getMainLooper())
+
     interface RegisterFragmentCallback {
         fun switchToLogin()
-        fun onSuccessfulRegister()
+        fun onSuccessfulRegister(username : String, token : String)
     }
 
     lateinit var viewModel : LoginViewModel
@@ -75,10 +77,12 @@ class RegisterFragment : Fragment() , View.OnClickListener {
                                     val editor = pref.edit()
                                     editor.putString(Constants.USERNAME, result.data!!.username)
                                     editor.apply()
-                                    registerFragmentCallback?.onSuccessfulRegister()
+                                    registerFragmentCallback?.onSuccessfulRegister(result.data!!.username, result.data!!.token)
                                 }
                                 is Result.Failure -> {
-                                    Toast.makeText(context!!, "Error", Toast.LENGTH_SHORT).show()
+                                    handler.post{
+                                        Toast.makeText(context!!, "Error", Toast.LENGTH_SHORT).show()
+                                    }
                                 }
                             }
                         }

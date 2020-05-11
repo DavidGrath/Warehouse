@@ -2,6 +2,7 @@ package com.example.warehouse.bind
 
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
+import androidx.databinding.library.baseAdapters.BR
 
 class LoginForm(var username : String, var password : String, currentlyLoggingIn : Boolean = false) : BaseObservable() {
     @Bindable
@@ -10,6 +11,6 @@ class LoginForm(var username : String, var password : String, currentlyLoggingIn
         if(field != value) {
             field = value
         }
-//        notifyPropertyChanged()
+        notifyPropertyChanged(BR.currentlyLoggingIn)
     }
 }

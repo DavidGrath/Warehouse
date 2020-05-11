@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.warehouse.bind.LoginForm
 import com.example.warehouse.databinding.FragmentLoginBinding
+import com.example.warehouse.utils.Constants.Companion.TOKEN
 import com.example.warehouse.utils.Constants.Companion.USERNAME
 import com.example.warehouse.utils.Result
 import com.example.warehouse.viewmodels.LoginViewModel
@@ -26,8 +27,11 @@ import kotlinx.coroutines.launch
 
 class LoginFragment : Fragment() , View.OnClickListener {
 
+
+    val handler = Handler(Looper.getMainLooper())
+
     interface LoginFragmentCallback {
-        fun onSuccessfulLogin()
+        fun onSuccessfulLogin(username : String, token : String)
         fun switchToRegister()
     }
 
@@ -76,11 +80,14 @@ class LoginFragment : Fragment() , View.OnClickListener {
                                     val pref = PreferenceManager.getDefaultSharedPreferences(context!!)
                                     val editor = pref.edit()
                                     editor.putString(USERNAME, result.data!!.username)
+                                    editor.putString(TOKEN, result.data!!.token)
                                     editor.apply()
-                                    loginFragmentCallback?.onSuccessfulLogin()
+                                    loginFragmentCallback?.onSuccessfulLogin(result.data!!.username, result.data!!.token)
                                 }
                                 is Result.Failure -> {
-                                    Toast.makeText(context!!, "Error", Toast.LENGTH_SHORT).show()
+                                    handler.post{
+                                        Toast.makeText(requireContext(), "Error", Toast.LENGTH_SHORT).show()
+                                    }
                                 }
                             }
                         }

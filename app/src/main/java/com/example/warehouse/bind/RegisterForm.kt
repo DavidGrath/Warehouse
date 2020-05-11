@@ -2,6 +2,7 @@ package com.example.warehouse.bind
 
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
+import androidx.databinding.library.baseAdapters.BR
 
 class RegisterForm(var username : String, var fName : String, var lName : String,
                    var eMail : String, var password : String, var confirmPassword : String,
@@ -12,6 +13,6 @@ class RegisterForm(var username : String, var fName : String, var lName : String
         if(field != value) {
             field = value
         }
-//        notifyPropertyChanged()
+        notifyPropertyChanged(BR.currentlyRegistering)
     }
 }

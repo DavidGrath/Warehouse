@@ -12,13 +12,21 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.model.GlideUrl
+import com.bumptech.glide.load.model.LazyHeaders
 import com.example.warehouse.R
 import com.example.warehouse.models.entities.InventoryItem
+import com.example.warehouse.utils.GeneralUtils
+import java.net.URL
 import java.text.DecimalFormat
 
 class InventoryItemAdapter() : ListAdapter<InventoryItem, InventoryItemAdapter.InventoryItemViewHolder>(DIFF_CALLBACK){
 
     companion object {
+
+        lateinit var token : String
+
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<InventoryItem>() {
             override fun areItemsTheSame(oldItem: InventoryItem, newItem: InventoryItem): Boolean {
                 return oldItem.id!!.equals(newItem.id!!)
@@ -49,7 +57,12 @@ class InventoryItemAdapter() : ListAdapter<InventoryItem, InventoryItemAdapter.I
                 itemPicture.setImageResource(R.drawable.ic_image_not_found)
             } else {
                 Glide.with(itemView.context)
-                    .load(Uri.parse(inventoryItem.imageUri))
+                    .load(GlideUrl(GeneralUtils.convertUrlToMobile(inventoryItem.imageUri!!),
+                        LazyHeaders.Builder()
+                        .addHeader("Authorization", token)
+                        .build()))
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .skipMemoryCache(true)
                     .placeholder(R.drawable.ic_image_not_found)
                     .error(R.drawable.ic_image_not_found)
                     .into(itemPicture)

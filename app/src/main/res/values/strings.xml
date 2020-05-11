@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Warehouse</string>
+    <string-array name="currency_codes">
+        <item>NGN</item>
+        <item>USD</item>
+        <item>EUR</item>
+    </string-array>
 </resources>
